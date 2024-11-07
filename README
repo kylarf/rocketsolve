@@ -1,0 +1,17 @@
+Dependencies:
+ - gnuplot (must be installed and on path as gnuplot)
+ - C compiler that supports C11 or newer and GNU extensions
+
+To compile, run "make" from the top-level directory (above src, data).
+
+Main executable "rocketsolve" will be placed in newly created "build" directory
+alongside object files.
+
+To run, invoke as follows:
+
+rocketsolve [input-file] [geometry-file] [data-dir]
+
+[input-file] and [geometry-file] are the respective paths to the input parameter
+and nozzle geometry (r vs x) files. [data-dir] is the path to the *directory*
+into which output data files and plots should be written (filenames fixed; will
+overwrite if already exist). [data-dir] already exist at time of execution.

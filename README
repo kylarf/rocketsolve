@@ -9,9 +9,17 @@ alongside object files.
 
 To run, invoke as follows:
 
-rocketsolve [input-file] [geometry-file] [data-dir]
+rocketsolve [input-file] [geometry-file] [data-dir] [pressure-file]
 
 [input-file] and [geometry-file] are the respective paths to the input parameter
 and nozzle geometry (r vs x) files. [data-dir] is the path to the *directory*
 into which output data files and plots should be written (filenames fixed; will
 overwrite if already exist). [data-dir] already exist at time of execution.
+
+[pressure-file] should contain a list of additional back-pressures at which to
+compute results, one per line, with no additional text present. A pressure file
+is required but can be empty; if you do not wish to create one please kindly
+specify /dev/null.
+
+A complete set of results will be output for each additional pressure; each
+filename will be prefixed with the pressure in Pa, rounded to the nearest Pa.

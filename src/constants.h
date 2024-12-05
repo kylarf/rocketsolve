@@ -1,9 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-const double N_A = 6.02214076e23;   // mol^-1
-const double K_B = 1.380649e-23;    // J K^-1
-const double R_BAR = 1000*N_A*K_B;  // J kmol^-1 K^-1
-const double G_0 = 9.80665;         // m s^-2
+extern const double N_A;   // mol^-1
+extern const double K_B;    // J K^-1
+extern const double R_BAR;  // J kmol^-1 K^-1
+extern const double G_0;         // m s^-2
+extern const double EPS;
 
 #endif // CONSTANTS_H

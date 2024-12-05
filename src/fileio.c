@@ -37,6 +37,15 @@ void read_geometry(FILE *geom_file, size_t n_read, double *x_loc, double *nozzle
     }
 }
 
+void read_pressures(FILE *press_file, size_t n_read, double *press_arr)
+{
+    fseek(press_file, 0, SEEK_SET);
+
+    for (size_t i = 0; i < n_read; ++i) {
+        fscanf(press_file, "%lf", &press_arr[i]);
+    }
+}
+
 int write_array(char *filename, double *arr, size_t N)
 {
     int status = 1;

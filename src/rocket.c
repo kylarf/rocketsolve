@@ -1,5 +1,4 @@
-#include <_stdio.h>
-#include <malloc/_malloc.h>
+#include <stdio.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,6 +6,7 @@
 #include <math.h>
 #include <string.h>
 #include <limits.h>
+
 #include "rocket.h"
 #include "fileio.h"
 #include "solver.h"

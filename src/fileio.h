@@ -2,7 +2,8 @@
 #define FILEIO_H
 
 #include <stdio.h>
-#include <sys/_types/_size_t.h>
+#include <stddef.h>
+
 #include "rocket.h"
 
 size_t count_lines(FILE *file);

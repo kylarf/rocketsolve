@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
-#include <sys/syslimits.h>
 #include "nozzle.h"
 #include "solver.h"
 #include "rocket.h"

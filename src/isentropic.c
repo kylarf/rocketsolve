@@ -1,4 +1,5 @@
 #include <math.h>
+
 #include "isentropic.h"
 
 double area_mach(double M, area_mach_par par)

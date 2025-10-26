@@ -1,8 +1,8 @@
+#include "fileio.h"
+
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "fileio.h"
 
 #define BUF_SIZE 65536
 

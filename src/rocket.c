@@ -1,3 +1,10 @@
+#include "rocket.h"
+#include "fileio.h"
+#include "solver.h"
+#include "isentropic.h"
+#include "nozzle.h"
+#include "constants.h"
+
 #include <stdio.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -6,13 +13,6 @@
 #include <math.h>
 #include <string.h>
 #include <limits.h>
-
-#include "rocket.h"
-#include "fileio.h"
-#include "solver.h"
-#include "isentropic.h"
-#include "nozzle.h"
-#include "constants.h"
 
 int read_inputs(FILE *input_file, RocketInputs *rocket_inputs)
 {

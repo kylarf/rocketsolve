@@ -1,10 +1,10 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
+#include "rocket.h"
+
 #include <stdio.h>
 #include <stddef.h>
-
-#include "rocket.h"
 
 size_t count_lines(FILE *file);
 

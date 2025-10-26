@@ -1,7 +1,7 @@
-#include <math.h>
-
 #include "nozzle.h"
 #include "isentropic.h"
+
+#include <math.h>
 
 double M2_norm_shock(double M1, double gamma)
 { 

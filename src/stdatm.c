@@ -1,6 +1,6 @@
-#include <math.h>
-
 #include "stdatm.h"
+
+#include <math.h>
 
 static const double R_EARTH = 6369.0;   // radius of Earth (km)
 static const double GMR = 34.163195;    // hydrostatic constant

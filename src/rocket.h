@@ -1,10 +1,10 @@
 #ifndef ROCKET_H
 #define ROCKET_H
 
+#include "nozzle.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "nozzle.h"
 
 typedef struct PerfParams
 {

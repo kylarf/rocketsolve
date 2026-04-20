@@ -1,5 +1,4 @@
 #include "nozzle.h"
-#include "solver.h"
 #include "rocket.h"
 #include "fileio.h"
 #include "stdatm.h"

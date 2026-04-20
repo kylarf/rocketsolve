@@ -11,6 +11,10 @@ static inline int sign(double num)
 #define SOLVER_CONCAT_INNER(A, B) A ## B
 #define SOLVER_CONCAT(A, B) SOLVER_CONCAT_INNER(A, B)
 
+#ifndef SOLVER_FUNC
+#error SOLVER_FUNC must be defined before including "bisection_solver.h"
+#endif
+
 #ifndef SOLVER_NAME
     #define SOLVER_NAME SOLVER_CONCAT(bisect_solve_, SOLVER_FUNC)
 #endif
@@ -26,6 +30,7 @@ static inline int sign(double num)
 #else
     #define COMMA_ARGS
 #endif
+
 
 double SOLVER_NAME(double a, double b, double tol, int nmax COMMA_SIGNATURE)
 {

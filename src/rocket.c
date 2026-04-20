@@ -1,6 +1,5 @@
 #include "rocket.h"
 #include "fileio.h"
-#include "solver.h"
 #include "isentropic.h"
 #include "nozzle.h"
 #include "constants.h"
@@ -13,6 +12,13 @@
 #include <math.h>
 #include <string.h>
 #include <limits.h>
+
+
+#define SOLVER_FUNC area_mach
+#define SOLVER_SIGNATURE double A_Astar, double gm
+#define SOLVER_ARGS A_Astar, gm
+#include "bisection_solver.h"
+
 
 int read_inputs(FILE *input_file, RocketInputs *rocket_inputs)
 {
@@ -160,13 +166,6 @@ void Rocket_free(Rocket *self)
     free(flow_props->h);
     free(self);
 }
-
-//IMPL_SOLVER(area_mach, area_mach_par, par);
-
-#define SOLVER_FUNC area_mach
-#define SOLVER_SIGNATURE double A_Astar, double gm
-#define SOLVER_ARGS A_Astar, gm
-#include "bisection_solver.h"
 
 void Rocket_compute_flow(Rocket *self)
 {

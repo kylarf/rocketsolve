@@ -2,10 +2,9 @@
 
 #include <math.h>
 
-double area_mach(double M, area_mach_par par)
+double area_mach(double M, double A_Astar, double gm)
 {
-    return 1/M * pow(( 2/(par.gm+1) * (1 + (par.gm-1)/2 * M*M) ), (par.gm+1)/2/(par.gm-1))
-           - par.A_Astar;
+    return 1/M * pow((2/(gm+1) * (1 + (gm-1)/2 * M*M)), (gm+1)/2/(gm-1)) - A_Astar;
 }
 
 double a_astar(double M, double gm)

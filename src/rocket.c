@@ -161,7 +161,12 @@ void Rocket_free(Rocket *self)
     free(self);
 }
 
-IMPL_SOLVER(area_mach, area_mach_par, par);
+//IMPL_SOLVER(area_mach, area_mach_par, par);
+
+#define SOLVER_FUNC area_mach
+#define SOLVER_SIGNATURE double A_Astar, double gm
+#define SOLVER_ARGS A_Astar, gm
+#include "bisection_solver.h"
 
 void Rocket_compute_flow(Rocket *self)
 {
@@ -188,8 +193,9 @@ void Rocket_compute_flow(Rocket *self)
             a = 0;
             b = 1;
         }
-        flow_props->M[i] = solve_area_mach(a, b, EPS, 50,
-                                           (area_mach_par){inputs->A_ratio[i], gamma});
+        flow_props->M[i] = bisect_solve_area_mach(
+            a, b, EPS, 50, inputs->A_ratio[i], gamma
+        );
     }
     perf_params->p0 = p0_from_p(inputs->p_c, flow_props->M[0], gamma);
     perf_params->T0 = T0_from_T(inputs->T_c, flow_props->M[0], gamma);
@@ -223,10 +229,8 @@ void handle_shocks(Rocket *self)
     double c_p = gamma * inputs->Rspec / (gamma - 1);
 
     // back-pressure comparisons now
-    Me_sub = solve_area_mach(0, 1, EPS, 50,
-                             (area_mach_par){inputs->A_ratio[n_points-1], gamma});
-    Me_sup = solve_area_mach(1, 20, EPS, 50, 
-                             (area_mach_par){inputs->A_ratio[n_points-1], gamma});
+    Me_sub = bisect_solve_area_mach(0, 1, EPS, 50, inputs->A_ratio[n_points-1], gamma);
+    Me_sup = bisect_solve_area_mach(1, 20, EPS, 50, inputs->A_ratio[n_points-1], gamma);
     pe_sub = p_from_p0(perf_params->p0, Me_sub, gamma);
     pe_sup = p_from_p0(perf_params->p0, Me_sup, gamma);
     
@@ -241,8 +245,9 @@ void handle_shocks(Rocket *self)
         flow_props->expansion.flavor = SONIC_THROAT;
         // initial pass to re-compute Mach numbers, subsonic
         for (size_t i = inputs->throat_idx; i < n_points; ++i) {
-            flow_props->M[i] = solve_area_mach(0, 1, EPS, 50,
-                                               (area_mach_par){inputs->A_ratio[i], gamma});
+            flow_props->M[i] = bisect_solve_area_mach(
+                0, 1, EPS, 50, inputs->A_ratio[i], gamma
+            );
         }
         // recalculate flow properties through nozzle
         for (size_t i = inputs->throat_idx; i < n_points; ++i) {
@@ -315,8 +320,8 @@ void handle_shocks(Rocket *self)
             // recompute Mach numbers downstream of shock
             for (size_t i = i_shk; i < n_points; ++i) {
                 // Mach number must be subsonic after shock
-                flow_props->M[i] = solve_area_mach(
-                    0, 1, EPS, 50, (area_mach_par){inputs->A_ratio[i]/Astar_ratio, gamma}
+                flow_props->M[i] = bisect_solve_area_mach(
+                    0, 1, EPS, 50, inputs->A_ratio[i]/Astar_ratio, gamma
                 );
             }
 

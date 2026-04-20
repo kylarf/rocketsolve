@@ -3,12 +3,7 @@
 
 #include <math.h>
 
-typedef struct
-{
-    double A_Astar, gm;
-} area_mach_par;
-
-double area_mach(double M, area_mach_par par);
+double area_mach(double M, double A_Astar, double gm);
 
 double a_astar(double M, double gm);
 

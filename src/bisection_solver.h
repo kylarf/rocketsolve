@@ -10,17 +10,20 @@ static inline int sign(double num)
 
 #define SOLVER_CONCAT_INNER(A, B) A ## B
 #define SOLVER_CONCAT(A, B) SOLVER_CONCAT_INNER(A, B)
-#define SOLVER_NAME SOLVER_CONCAT(bisect_solve_, SOLVER_FUNC)
+
+#ifndef SOLVER_NAME
+    #define SOLVER_NAME SOLVER_CONCAT(bisect_solve_, SOLVER_FUNC)
+#endif
 
 #ifdef SOLVER_SIGNATURE
     #define COMMA_SIGNATURE , SOLVER_SIGNATURE
-#elif
+#else
     #define COMMA_SIGNATURE
 #endif
 
 #ifdef SOLVER_ARGS
     #define COMMA_ARGS , SOLVER_ARGS
-#elif
+#else
     #define COMMA_ARGS
 #endif
 
